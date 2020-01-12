@@ -62,12 +62,12 @@ def main(args):
         logger.info("Train application df shape: {}".format(df_train.shape))
         logger.info("Test application df shape: {}".format(df_test.shape))
 
-    # with timer("Add customer id feature"):
-    #     from util import group_target_by_cols
-    #     df_train, df_test = group_target_by_cols(df_train, df_test, Configs.BALANCE_AGG_RECIPE)
+    with timer("Add customer id feature"):
+        from util import group_target_by_cols
+        df_train, df_test = group_target_by_cols(df_train, df_test, Configs.BALANCE_AGG_RECIPE)
 
-    #     logger.info("Train application df shape: {}".format(df_train.shape))
-    #     logger.info("Test application df shape: {}".format(df_test.shape))
+        logger.info("Train application df shape: {}".format(df_train.shape))
+        logger.info("Test application df shape: {}".format(df_test.shape))
 
     with timer("Run LightGBM with kfold"):
         ITERATION = (5 if args.TEST_NULL_HYPO else 1)
