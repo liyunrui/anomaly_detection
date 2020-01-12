@@ -1,0 +1,26 @@
+loading data - done in 0s
+Train application df shape: (7444, 24)
+Test application df shape: (806, 24)
+Process train/test application - done in 0s
+Train application df shape: (7444, 38)
+Test application df shape: (806, 38)
+Add customer id feature - done in 0s
+Iteration 0
+Fold  1 val f1-score : 0.956897
+Fold  2 val f1-score : 0.956140
+Fold  3 val f1-score : 0.947368
+Fold  4 val f1-score : 0.977974
+Fold  5 val f1-score : 0.960352
+Fold  6 val f1-score : 0.982609
+Fold  7 val f1-score : 0.973214
+Fold  8 val f1-score : 0.973451
+Fold  9 val f1-score : 0.961039
+Fold 10 val f1-score : 0.973451
+---------------------------------------
+
+Over-folds val f1-score 0.966213
+---------------------------------------
+============================================
+Over-iterations f1-score  0.966213
+Run LightGBM with kfold - done in 1453s
+Useless features: 'OVD_t3'
