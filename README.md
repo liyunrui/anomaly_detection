@@ -1,30 +1,54 @@
-# food_review_analysis
-Quick prototype of food review analysis using machine learning
+# Anomaly Detection
+Quick prototype of a anomaly detection model for OCBC bank to predict high risk customer using tree-based model
 
 # Probelm Description
 
-The problem is given a text review in Thai, to clasify this review into 5 differet claases. 
-So, obviously it's a text multl-class classifcation task.
+The problem is given a costmers' demographic data and his payment history data, to clasify this customer into high credit risk
+or low credit risk customer.
+So, we formulate this problem into binary classifcation task.
 
-# Methods
+# Outline
 
-Because we don't have enough Thai corpus to train on our own language model, we use
-pre-trained language model, **bert-base-multilingual-cased**, which is realesed by Google and 
-it support 104 languages including Thai.
+1.To begin, I do explorary data analysis(EDA) to get better understanding of data. 
+Specifically, I check data imbalance, if missing value happens, raw feature density distribution,.. etc.
 
-It will make our tokenization result makes more sense, see blow screenshot as an example.
-![td-lstm](assets/tokenization.jpg)
+For more details, please see **notebook/EDA.ipynb** (I have more comments with visualization result inside the notebook file) 
 
-Then, as followed the **BERT Paper** suggested how to fine-tune single sentence classification.
-The architecture looks like the below:
+2.Secondly, I do feature engineering to build some features manually.
 
-![td-lstm](assets/bert_ssc.jpg)
+Except raw feature, I add some features representing how many times the customer has record and compute
+max,min,std,mean,..etc statistical features of new blance groupby customer.
 
-Fpr more details, please see **data_process.py, train.py and model/bert_ssc.py**.
+To see which features are more important, please refer to the below top 30 important features:
+![td-lstm](asset/lgbm_importances.png)
 
-# Result
+For more details, please see **src/main.py, src/util.py and src/config.py** to see how I generated features.
+
+3.Thirdly, build the predictive modeling to predict high risk customer.
+
+**train/test split**
+
+Sample 10% of total costomer from data: 112 unique user as a testing data for model evaluation
+
+**validating stragety**
+
+Due to lack of data(less than 10,000), I choose 10-fold validating stategy to make sure our model 
+won't be overfitted too much on testing data.
+
+**model**
+We choose tree-based model using lightgbm as our predictive modeling because it's undoubtedly powerful for tabular data.
+
+For more details, please see **src/main.py, src/util.py and src/config.py** to see how I trained model and 10-fold.
+
+**evaluation metric**
+
+Because of data imbalance, we generally choose **f1-score** as our evaluation metric. Usually, for anomaly detection,
+we can have customized evaluation metric weighted by we care about more on precision or recall.
+
+# Result Analysis
 Due to lacking of GPU resoruces, the fine-tuning model only stopped and 2 epochs.., the validating
 accuracy and f1-score could refer to **bert_ssc-restaurant-191219-0740.log**
+
 # Usage
 
 Please run the below command line in order.
@@ -32,28 +56,21 @@ And the submisison will put under result directory.
 
 ### Requirements:
 
-* python 3.6.5+ environment
+* python 3.6.5+ environment(Highly recommend using virtual enviroment or pull python3 image running in Docker)
 
 ```sh
 pip3 install -r requirements.txt
 ```
 
-
-### Data Processing
-
-```sh
-python data_process.py
-```
-
 ### Training
 
 ```sh
-make train
+cd src
 ```
-## Testing
 
 ```sh
-python infer.py
+python3 main.py
 ```
+
 
 
