@@ -36,6 +36,7 @@ Due to lack of data(less than 10,000), I choose 10-fold validating stategy to ma
 won't be overfitted too much on testing data.
 
 **model**
+
 We choose tree-based model using lightgbm as our predictive modeling because it's undoubtedly powerful for tabular data.
 
 For more details, please see **src/main.py, src/util.py and src/config.py** to see how I trained model and 10-fold.
