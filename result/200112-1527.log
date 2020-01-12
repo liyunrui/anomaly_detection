@@ -1,0 +1,23 @@
+loading data - done in 0s
+Train application df shape: (7427, 24)
+Test application df shape: (823, 24)
+Process train/test application - done in 0s
+Iteration 0
+Fold  1 val f1-score : 0.968504
+Fold  2 val f1-score : 0.980392
+Fold  3 val f1-score : 0.942623
+Fold  4 val f1-score : 0.975806
+Fold  5 val f1-score : 0.934426
+Fold  6 val f1-score : 0.967742
+Fold  7 val f1-score : 0.951613
+Fold  8 val f1-score : 0.957198
+Fold  9 val f1-score : 0.972112
+Fold 10 val f1-score : 0.963563
+---------------------------------------
+
+Over-folds val f1-score 0.961538
+---------------------------------------
+============================================
+Over-iterations f1-score  0.961538
+Run LightGBM with kfold - done in 1639s
+Useless features: ''
