@@ -24,7 +24,7 @@ To see which features are more important, please refer to the below top 30 impor
 
 For more details, please see **src/main.py, src/util.py and src/config.py** to see how I generated features.
 
-- Thirdly, build the predictive modeling to predict high risk customer.
+- Thirdly, build the predictive modeling to predict high risk customer. To do that, the things I did in the following
 
 **train/test split**
 
